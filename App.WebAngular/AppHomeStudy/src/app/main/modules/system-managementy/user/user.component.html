@@ -1,0 +1,132 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    <i class="fa fa-bars"></i> DANH SÁCH NGƯỜI DÙNG</h2>
+                <div class="clearfix">
+                </div>
+            </div>
+            <div class="x_content">
+                <dx-data-grid id="dataGrid" [dataSource]="dataSource" [height]="heightGrid" style="min-width: 500px;" [allowColumnResizing]="true">
+
+                    <!-- <dxo-editing mode="popup" [allowAdding]="true">
+                        <dxo-popup title="Employee Info" [showTitle]="false" [width]="0" [height]="0" [position]="{ my: 'top', at: 'top', of: window }">
+                        </dxo-popup>
+                    </dxo-editing> -->
+
+                    <dxo-filter-row [visible]="isShowFilterRow"></dxo-filter-row>
+                    <dxo-header-filter [visible]="isShowHeaderFilter"></dxo-header-filter>
+                    <dxo-group-panel [visible]="isGroupPanel" [emptyPanelText]="groupPanelText"></dxo-group-panel>
+                    <dxo-export [enabled]="isExportData" [fileName]="fileNameExport" [allowExportSelectedData]="isExportSelectedData"></dxo-export>
+                    <dxo-search-panel [visible]="isSearchPanel" [width]="240" [placeholder]="placeholderSearch"></dxo-search-panel>
+                    <dxo-paging [pageIndex]="pageIndex" [pageSize]="pageSize"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="isShowPageSizeSelector" [allowedPageSizes]="arrPageSize" [showInfo]="true">
+                    </dxo-pager>
+
+                    <dxo-remote-operations [filtering]="true" [sorting]="true" [grouping]="true" [paging]="true" [summary]="true">
+                    </dxo-remote-operations>
+
+                    <!-- <dxi-column dataField="userID" caption="STT"></dxi-column> -->
+                    <!-- <dxi-column dataField="id" caption="id"></dxi-column> -->
+                    <dxi-column dataField="userName" caption="Tên đăng nhập"></dxi-column>
+                    <dxi-column dataField="fullName" caption="Họ tên">
+                    </dxi-column>
+                    <!-- <dxi-column dataField="cellPhone" caption="SĐT"></dxi-column> -->
+                    <dxi-column dataField="email" caption="Email"></dxi-column>
+                    <!-- <dxi-column dataField="address" caption="Địa chỉ"></dxi-column> -->
+                    <!-- <dxi-column dataField="districtID" caption="Quận/Huyện">
+                    </dxi-column>
+                    <dxi-column dataField="countryID" caption="Thành phố"></dxi-column>
+                    <dxi-column dataField="buid" caption="Chi nhánh"></dxi-column> -->
+
+                    <dxi-column dataField="createDate" format="dd/MM/yyyy, HH:mm:ss" dataType="date" caption="Ngày tạo"></dxi-column>
+                    <dxi-column dataField="createByUser" caption="Người tạo"></dxi-column>
+                    <dxi-column dataField="updtDate" format="dd/MM/yyyy, HH:mm:ss" dataType="date" caption="Ngày cập nhật"></dxi-column>
+                    <dxi-column dataField="updtByUser" caption="Người cập nhật"></dxi-column>
+
+
+                    <dxi-column cellTemplate="cellTemplate" alignment="center" [width]="80"></dxi-column>
+                    <div *dxTemplate="let data of 'cellTemplate'" class="customer-template">
+                        <dx-button icon="edit" (onClick)="EditingStart(data,$event)" class="btn-custom">
+                        </dx-button>
+                        <dx-button icon="trash" class="btn-custom" (onClick)="RemoveStart(data)">
+                        </dx-button>
+                    </div>
+                </dx-data-grid>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popup edit smart card -->
+<!-- (submit)="Editing($event)" -->
+<dx-popup class="popup" [width]="auto" [height]="450" [showTitle]="true" [title]="titlePopup.Title" [dragEnabled]="false"
+    [(visible)]="popupVisible" [position]="{ my: 'top', at: 'top', of: window }">
+    <div *dxTemplate="let data of 'content'">
+        <form action="your-action" (submit)="Editing($event)">
+            <dx-form id="form" [colCount]="2" [showColonAfterLabel]="true" [showValidationSummary]="true" validationGroup="customerData"
+                [formData]="entity" [colCountByScreen]="colCountByScreen" [screenByWidth]="screen">
+                <dxi-item dataField="userName" [label]="{text: 'Tên đăng nhập'}" [editorOptions]="{ disabled: isEnable }">
+                    <dxi-validation-rule type="required" message="Bắt buộc nhập Username"></dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="fullName" [label]="{text: 'Họ tên'}"></dxi-item>
+                <!-- <dxi-item dataField="sex" [label]="{text: 'Giới tính nữ'}" editorType="dxCheckBox"></dxi-item> -->
+                <!-- <dxi-item dataField="cellPhone" [label]="{text: 'SĐT'}"></dxi-item> -->
+                <dxi-item dataField="email">
+                </dxi-item>
+                <dxi-item dataField="address" [label]="{text: 'Địa chỉ'}"></dxi-item>
+                <!-- <dxi-item dataField="password" [label]="{text: 'Mật khẩu'}">
+                    <dxi-validation-rule type="required" message="Bắt buộc nhập Mật khẩu"></dxi-validation-rule>
+                </dxi-item> -->
+                <!-- <dxi-item dataField="functionID" ></dxi-item>
+                <dxi-item dataField="groupID"></dxi-item> -->
+                <!-- <dxi-item dataField="firstName"></dxi-item>
+                <dxi-item dataField="lastName"></dxi-item> -->
+                <!-- <dxi-item dataField="countryID"></dxi-item>
+                <dxi-item dataField="provinceID"></dxi-item>
+                <dxi-item dataField="districtID"></dxi-item>
+                <dxi-item dataField="buid"></dxi-item> -->
+            </dx-form>
+            <div class="wrap-group row">
+                <hr>
+                <p style="font-weight: bold; text-align: center">DANH SÁCH NHÓM QUYỀN</p>
+                <hr>
+                <div class="dx-field item-group col-md-6" *ngFor="let item of lstGroup">
+                    <div class="dx-field-label">
+                        <p class="item-name">{{item.name}}</p>
+                    </div>
+                    <div class="dx-field-value">
+                        <dx-check-box [(value)]="item.checked"></dx-check-box>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup-action">
+                <dx-button class="button-info" text="Hủy" (onClick)="cancelPopup('update')">
+                </dx-button>
+                <dx-button class="button-info" type="success" [text]="titlePopup.ButtonName" validationGroup="customerData" [useSubmitBehavior]="true">
+                </dx-button>
+
+            </div>
+        </form>
+    </div>
+</dx-popup>
+
+<dx-popup class="popup" [width]="auto" [height]="auto" [showTitle]="false" [dragEnabled]="false" [(visible)]="popupVisibleDel"
+    [position]="{ my: 'top', at: 'top', of: window }">
+    <div *dxTemplate="let data of 'content'">
+        <span>Bạn chắc chắn muốn xóa user này?</span>
+        <div class="popup-action">
+            <dx-button class="button-info" text="Hủy" (onClick)="cancelPopup('del')">
+            </dx-button>
+            <dx-button class="button-info" type="success" text="Xóa" (onClick)="RowRemoving()">
+            </dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+
+<!-- Button Footer -->
+<app-button-control [lstButtonLink]="lstButtonLink"></app-button-control>

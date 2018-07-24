@@ -1,0 +1,30 @@
+import { MainModule } from '@app/main/main.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { RouterModule, PreloadAllModules } from '@angular/router';
+import { AppComponent } from '@app/app.component';
+import { appRoutes } from "@app/app.routes";
+
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { AuthGuard } from '@app/core/guards/auth.guard';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    MainModule,
+    RouterModule.forRoot(appRoutes, { useHash: true })
+    //Routing
+  ],
+  providers: [AuthGuard],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>
+          <i class="fa fa-bars"></i> DANH SÁCH VIDEO</h2>
+        <div class="clearfix">
+        </div>
+      </div>
+      <div class="x_content">
+
+        <!-- <div id="data-grid-demo">
+          <dx-data-grid id="gridContainer" [dataSource]="dataSource" keyExpr="ID" [allowColumnResizing]="true"
+          [columnAutoWidth]="true" (onContentReady)="onContentReady($event)">
+
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+            <dxi-column dataField="lineId" [fixed]="true" [width]="70"></dxi-column>
+            <dxi-column dataField="videoID"></dxi-column>
+            <dxi-column dataField="videoName"></dxi-column>
+            <dxi-column dataField="channelId"></dxi-column>
+            <dxi-column dataField="urlYoutube" [width]="170"></dxi-column>
+            <dxi-column dataField="urlUseIframe" [width]="170"></dxi-column>
+            <dxi-column dataField="urlImage" [width]="170"></dxi-column>
+            <dxi-column dataField="createDate" [showEditorAlways]="true" dataType="date">
+            </dxi-column>
+          </dx-data-grid>
+        </div> -->
+
+        <!-- <dx-data-grid id="gridContainer" [dataSource]="dataSource" (onContentReady)="onContentReady($event)">
+
+          <dxo-paging [enabled]="false"></dxo-paging>
+          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+
+          <dxi-column dataField="lineId" caption="Title"></dxi-column>
+          <dxi-column dataField="videoName"></dxi-column>
+          <dxi-column dataField="channelId"></dxi-column>
+          <dxi-column dataField="urlYoutube" [width]="130"></dxi-column>
+          <dxi-column dataField="createDate" [width]="125" dataType="date"></dxi-column>
+        </dx-data-grid> -->
+
+        <dx-data-grid id="gridContainer" [dataSource]="dataSource"  keyExpr="lineId">
+
+          <dxo-paging [enabled]="false"></dxo-paging>
+          <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+
+          <dxi-column dataField="lineId"></dxi-column>
+          <dxi-column dataField="videoID"></dxi-column>
+          <dxi-column dataField="videoName"></dxi-column>
+          <dxi-column dataField="channelId"></dxi-column>
+          <dxi-column dataField="urlYoutube" [width]="130"></dxi-column>
+          <dxi-column dataField="createDate" [width]="125" dataType="date"></dxi-column>
+
+        </dx-data-grid>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Button Footer -->
+<!-- <app-button-control [lstButtonLink]="lstButtonLink"></app-button-control> -->

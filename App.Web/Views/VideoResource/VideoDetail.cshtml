@@ -1,0 +1,55 @@
+﻿@model App.Data.Entities.Resource_Video
+@{
+    ViewData["Title"] = "VideoDetail";
+    Layout = "~/Views/Shared/_LayoutDisplayVideo.cshtml";
+}
+<style>
+    /*span, p, .title-video {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    .overflow-string {
+        text-overflow: " [..]";
+    }*/
+</style>
+
+
+<div class="wrap-video-detail row">
+    <div class="col-md-8 video-container">
+        <div class="video-youtube row">
+            <iframe src="@Model.UrlUseIframe"
+                    frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="title-video-youtube row">
+            <h4>
+                @Model.VideoName
+                @*<p class="overflow-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>*@
+
+            </h4>
+        </div>
+        <div class="title-video-youtube row">
+            <div class="col-md-4 pull-left">
+                <span>
+                    Lượt xem: 1.000
+                </span>
+            </div>
+            <div class="col-md-8">
+                <span class="pull-right">
+                    LIKE - SHARE
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 video-concern row">
+        <div class="row video-container-right">
+            @await Component.InvokeAsync("VideosConcern", new { id = Model.LineId })
+        </div>
+    </div>
+
+</div>
+
